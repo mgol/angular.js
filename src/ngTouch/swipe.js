@@ -170,4 +170,3 @@ ngTouch.factory('$swipe', [function() {
   };
 }]);
 
-

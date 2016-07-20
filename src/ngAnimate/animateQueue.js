@@ -177,9 +177,8 @@ var $$AnimateQueueProvider = ['$animateProvider', function($animateProvider) {
 
     // IE9-11 has no method "contains" in SVG element and in Node.prototype. Bug #10259.
     var contains = window.Node.prototype.contains || function(arg) {
-      // jshint bitwise: false
+      // eslint-disable-next-line no-bitwise
       return this === arg || !!(this.compareDocumentPosition(arg) & 16);
-      // jshint bitwise: true
     };
 
     function findCallbacks(parent, element, event) {
@@ -577,7 +576,7 @@ var $$AnimateQueueProvider = ['$animateProvider', function($animateProvider) {
         runner.progress(event, phase, data);
       }
 
-      function close(reject) { // jshint ignore:line
+      function close(reject) {
         clearGeneratedClasses(element, options);
         applyAnimationClasses(element, options);
         applyAnimationStyles(element, options);

@@ -21,7 +21,7 @@ describe('$templateRequest', function() {
 
           expect($http.get).toHaveBeenCalledOnceWith('tpl.html', {
             cache: $templateCache,
-            transformResponse: [  ]
+            transformResponse: []
           });
         });
 

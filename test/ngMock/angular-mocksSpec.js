@@ -745,7 +745,6 @@ describe('ngMock', function() {
     }));
 
     it('should serialize scope that has overridden "hasOwnProperty"', inject(function($rootScope, $sniffer) {
-      /* jshint -W001 */
       $rootScope.hasOwnProperty = 'X';
       expect(d($rootScope)).toMatch(/Scope\(.*\): \{/);
       expect(d($rootScope)).toMatch(/hasOwnProperty: "X"/);
@@ -2076,9 +2075,8 @@ describe('ngMock', function() {
           { name: 'flurp', id: 2 }
         ];
         module(function($controllerProvider) {
-          //jshint evil: true
+          // eslint-disable-next-line no-eval
           var TestCtrl = eval('(class { constructor() { called = true; } })');
-          //jshint evil: false
           $controllerProvider.register('testCtrl', TestCtrl);
         });
         inject(function($controller, $rootScope) {

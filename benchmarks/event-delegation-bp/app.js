@@ -5,7 +5,7 @@ app.directive('noopDir', function() {
     compile: function($element, $attrs) {
       return function($scope, $element) {
         return 1;
-      }
+      };
     }
   };
 });
@@ -18,7 +18,7 @@ app.directive('nativeClick', ['$parse', function($parse) {
         $element[0].addEventListener('click', function() {
           console.log('clicked');
         }, false);
-      }
+      };
     }
   };
 }]);
@@ -47,8 +47,8 @@ app.controller('DataController', function($rootScope) {
       self.rows = oldRows;
       if (self.rows.length !== self.ngRepeatCount) {
         self.rows = [];
-        for (var i=0; i<self.ngRepeatCount; i++) {
-          self.rows.push('row'+i);
+        for (var i = 0; i < self.ngRepeatCount; i++) {
+          self.rows.push('row' + i);
         }
       }
       $rootScope.$apply();

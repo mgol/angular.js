@@ -552,16 +552,13 @@ angular.mock.$IntervalProvider = function() {
 };
 
 
-/* jshint -W101 */
-/* The R_ISO8061_STR regex is never going to fit into the 100 char limit!
- * This directive should go inside the anonymous function but a bug in JSHint means that it would
- * not be enacted early enough to prevent the warning.
- */
-var R_ISO8061_STR = /^(-?\d{4})-?(\d\d)-?(\d\d)(?:T(\d\d)(?:\:?(\d\d)(?:\:?(\d\d)(?:\.(\d{3}))?)?)?(Z|([+-])(\d\d):?(\d\d)))?$/;
-
 function jsonStringToDate(string) {
+  // The R_ISO8061_STR regex is never going to fit into the 100 char limit!
+  // eslit-disable-next-line max-len
+  var R_ISO8061_STR = /^(-?\d{4})-?(\d\d)-?(\d\d)(?:T(\d\d)(?::?(\d\d)(?::?(\d\d)(?:\.(\d{3}))?)?)?(Z|([+-])(\d\d):?(\d\d)))?$/;
+
   var match;
-  if (match = string.match(R_ISO8061_STR)) {
+  if ((match = string.match(R_ISO8061_STR))) {
     var date = new Date(0),
         tzHour = 0,
         tzMin  = 0;
@@ -761,7 +758,6 @@ angular.mock.TzDate = function(offset, timestamp) {
 
 //make "tzDateInstance instanceof Date" return true
 angular.mock.TzDate.prototype = Date.prototype;
-/* jshint +W101 */
 
 
 /**
@@ -2672,6 +2668,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
    * @ngdoc method
    * @name $rootScope.Scope#$countChildScopes
    * @module ngMock
+   * @this $rootScope.Scope
    * @description
    * Counts all the direct and indirect child scopes of the current scope.
    *
@@ -2680,7 +2677,6 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
    * @returns {number} Total number of child scopes.
    */
   function countChildScopes() {
-    // jshint validthis: true
     var count = 0; // exclude the current scope
     var pendingChildHeads = [this.$$childHead];
     var currentScope;
@@ -2702,6 +2698,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
   /**
    * @ngdoc method
    * @name $rootScope.Scope#$countWatchers
+   * @this $rootScope.Scope
    * @module ngMock
    * @description
    * Counts all the watchers of direct and indirect child scopes of the current scope.
@@ -2712,7 +2709,6 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
    * @returns {number} Total number of watchers.
    */
   function countWatchers() {
-    // jshint validthis: true
     var count = this.$$watchers ? this.$$watchers.length : 0; // include the current scope
     var pendingChildHeads = [this.$$childHead];
     var currentScope;
@@ -2732,7 +2728,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
 }];
 
 
-!(function(jasmineOrMocha) {
+(function(jasmineOrMocha) {
 
   if (!jasmineOrMocha) {
     return;
@@ -2827,7 +2823,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
    *
    * You cannot call `sharedInjector()` from within a context already using `sharedInjector()`.
    *
-   * ## Example
+   * ## Example
    *
    * Typically beforeAll is used to make many assertions about a single operation. This can
    * cut down test run-time as the test setup doesn't need to be re-run, and enabling focussed
@@ -3067,11 +3063,11 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
     if (!errorForStack.stack) {
       try {
         throw errorForStack;
-      } catch (e) {}
+      } catch (e) { /* empty */ }
     }
-    return wasInjectorCreated() ? workFn.call(currentSpec) : workFn;
+    return wasInjectorCreated() ? WorkFn.call(currentSpec) : WorkFn;
     /////////////////////
-    function workFn() {
+    function WorkFn() {
       var modules = currentSpec.$modules || [];
       var strictDi = !!currentSpec.$injectorStrict;
       modules.unshift(['$injector', function($injector) {
@@ -3099,9 +3095,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
           injector.annotate(blockFns[i]);
         }
         try {
-          /* jshint -W040 *//* Jasmine explicitly provides a `this` object when calling functions */
           injector.invoke(blockFns[i] || angular.noop, this);
-          /* jshint +W040 */
         } catch (e) {
           if (e.stack && errorForStack) {
             throw new ErrorAddingDeclarationLocationStack(e, errorForStack);

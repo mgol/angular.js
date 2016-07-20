@@ -11,7 +11,7 @@ module.exports = function typeInlineTagDef(getTypeClass) {
   return {
     name: 'type',
     handler: function(doc, tagName, tagDescription) {
-      return '<a href="" class="' + getTypeClass(tagDescription) + '">'+encoder.htmlEncode(tagDescription) + '</a>';
+      return '<a href="" class="' + getTypeClass(tagDescription) + '">' + encoder.htmlEncode(tagDescription) + '</a>';
     }
   };
 };

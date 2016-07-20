@@ -1,6 +1,7 @@
-"use strict";
-/* jshint browser: true */
-/* global importScripts, onmessage: true, postMessage, lunr */
+'use strict';
+
+/* eslint-env worker */
+/* global importScripts, lunr */
 
 // Load up the lunr library
 importScripts('../components/lunr.js-0.5.12/lunr.min.js');
@@ -10,8 +11,8 @@ importScripts('../components/lunr.js-0.5.12/lunr.min.js');
 var index = lunr(function() {
   this.ref('path');
   this.field('titleWords', {boost: 50});
-  this.field('members', { boost: 40});
-  this.field('keywords', { boost : 20 });
+  this.field('members', {boost: 40});
+  this.field('keywords', {boost: 20});
 });
 
 // Retrieve the searchData which contains the information about each page to be indexed
@@ -25,13 +26,13 @@ searchDataRequest.onload = function() {
   searchData.forEach(function(page) {
     index.add(page);
   });
-  postMessage({ e: 'index-ready' });
+  postMessage({e: 'index-ready'});
 };
 searchDataRequest.open('GET', 'search-data.json');
 searchDataRequest.send();
 
 // The worker receives a message everytime the web app wants to query the index
-onmessage = function(oEvent) {
+self.onmessage = function(oEvent) {
   var q = oEvent.data.q;
   var hits = index.search(q);
   var results = [];
@@ -40,5 +41,5 @@ onmessage = function(oEvent) {
     results.push(hit.ref);
   });
   // The results of the query are sent back to the web app via a new message
-  postMessage({ e: 'query-ready', q: q, d: results });
+  self.postMessage({e: 'query-ready', q: q, d: results});
 };

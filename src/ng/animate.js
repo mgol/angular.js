@@ -82,7 +82,7 @@ var $$CoreAnimateQueueProvider = function() {
           addRemoveClassesPostDigest(element, options.addClass, options.removeClass);
         }
 
-        var runner = new $$AnimateRunner(); // jshint ignore:line
+        var runner = new $$AnimateRunner();
 
         // since there are no animations to run the runner needs to be
         // notified that the animation call is complete.

@@ -18,7 +18,7 @@ module.exports = function errorDocsProcessor(errorNamespaceMap, getMinerrInfo) {
       docs.forEach(function(doc) {
         var parts, namespaceDoc;
 
-        if ( doc.docType === 'error' ) {
+        if (doc.docType === 'error') {
 
           // Parse out the error info from the id
           parts = doc.name.split(':');
@@ -27,7 +27,7 @@ module.exports = function errorDocsProcessor(errorNamespaceMap, getMinerrInfo) {
 
           // Get or create the relevant errorNamespace doc
           namespaceDoc = errorNamespaceMap.get(doc.namespace);
-          if ( !namespaceDoc ) {
+          if (!namespaceDoc) {
             namespaceDoc = {
               area: 'error',
               name: doc.namespace,

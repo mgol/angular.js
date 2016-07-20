@@ -14,8 +14,8 @@
 // As such, this doesn't have to be efficient.
 function indexToLineAndColumn(text, index) {
   var lines = text.split(/\n/g);
-  for (var i=0; i < lines.length; i++) {
-    var line=lines[i];
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
     if (index >= line.length) {
       index -= line.length;
     } else {

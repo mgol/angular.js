@@ -9,7 +9,7 @@ module.exports = function(config) {
       src: '/build/angular.js'
     },
     {
-      src: 'app.js',
+      src: 'app.js'
     }]
   });
 };

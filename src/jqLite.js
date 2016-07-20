@@ -137,7 +137,7 @@ function jqNextId() { return ++jqId; }
 
 var SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 var MOZ_HACK_REGEXP = /^moz([A-Z])/;
-var MOUSE_EVENT_MAP= { mouseleave: "mouseout", mouseenter: "mouseover"};
+var MOUSE_EVENT_MAP = { mouseleave: "mouseout", mouseenter: "mouseover"};
 var jqLiteMinErr = minErr('jqLite');
 
 /**
@@ -262,9 +262,8 @@ function jqLiteWrapNode(node, wrapper) {
 
 // IE9-11 has no method "contains" in SVG element and in Node.prototype. Bug #10259.
 var jqLiteContains = window.Node.prototype.contains || function(arg) {
-  // jshint bitwise: false
+  // eslint-disable-next-line no-bitwise
   return !!(this.compareDocumentPosition(arg) & 16);
-  // jshint bitwise: true
 };
 
 /////////////////////////////////////////////
@@ -538,9 +537,8 @@ var JQLitePrototype = JQLite.prototype = {
     } else {
       this.on('DOMContentLoaded', trigger); // works for modern browsers and IE9
       // we can not use jqLite since we are not done loading and jQuery could be loaded later.
-      // jshint -W064
+      // eslint-disable-next-line new-cap
       JQLite(window).on('load', trigger); // fallback to window.onload for others
-      // jshint +W064
     }
   },
   toString: function() {

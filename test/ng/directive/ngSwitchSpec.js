@@ -21,7 +21,7 @@ describe('ngSwitch', function() {
     $rootScope.select = 1;
     $rootScope.$apply();
     expect(element.text()).toEqual('first:');
-    $rootScope.name="shyam";
+    $rootScope.name = "shyam";
     $rootScope.$apply();
     expect(element.text()).toEqual('first:shyam');
     $rootScope.select = 2;
@@ -51,7 +51,7 @@ describe('ngSwitch', function() {
     $rootScope.select = 1;
     $rootScope.$apply();
     expect(element.text()).toEqual('first:, first too:');
-    $rootScope.name="shyam";
+    $rootScope.name = "shyam";
     $rootScope.$apply();
     expect(element.text()).toEqual('first:shyam, first too:shyam');
     $rootScope.select = 2;

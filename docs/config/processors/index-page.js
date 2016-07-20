@@ -21,7 +21,7 @@ module.exports = function generateIndexPagesProcessor() {
       // Collect up all the areas in the docs
       var areas = {};
       docs.forEach(function(doc) {
-        if ( doc.area ) {
+        if (doc.area) {
           areas[doc.area] = doc.area;
         }
       });

@@ -156,9 +156,8 @@ function filterFilter() {
       case 'number':
       case 'string':
         matchAgainstAnyProp = true;
-        //jshint -W086
+        // falls through
       case 'object':
-        //jshint +W086
         predicateFn = createPredicateFn(expression, comparator, anyPropertyKey, matchAgainstAnyProp);
         break;
       default:

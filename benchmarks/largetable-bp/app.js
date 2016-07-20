@@ -18,15 +18,15 @@ app.controller('DataController', function($scope, $rootScope) {
 
   var data = $scope.data = [];
   $scope.digestDuration = '?';
-  $scope.numberOfBindings = totalRows*totalColumns*2 + totalRows + 1;
+  $scope.numberOfBindings = totalRows * totalColumns * 2 + totalRows + 1;
   $scope.numberOfWatches = '?';
 
   function iGetter() { return this.i; }
   function jGetter() { return this.j; }
 
-  for (var i=0; i<totalRows; i++) {
+  for (var i = 0; i < totalRows; i++) {
     data[i] = [];
-    for (var j=0; j<totalColumns; j++) {
+    for (var j = 0; j < totalColumns; j++) {
       data[i][j] = {
         i: i, j: j,
         iFn: iGetter,
@@ -64,13 +64,13 @@ app.controller('DataController', function($scope, $rootScope) {
   });
 });
 
-var fn = function() { return 'x'};
+var fn = function() { return 'x';};
 
 
 app.directive('baselineBindingTable', function() {
   return {
     restrict: 'E',
-    link: function ($scope, $element) {
+    link: function($scope, $element) {
       var i, j, row, cell, comment;
       var template = document.createElement('span');
       template.setAttribute('ng-repeat', 'foo in foos');
@@ -104,7 +104,7 @@ app.directive('baselineBindingTable', function() {
 app.directive('baselineInterpolationTable', function() {
   return {
     restrict: 'E',
-    link: function ($scope, $element) {
+    link: function($scope, $element) {
       var i, j, row, cell, comment;
       var template = document.createElement('span');
       template.setAttribute('ng-repeat', 'foo in foos');

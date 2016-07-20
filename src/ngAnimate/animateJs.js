@@ -270,7 +270,7 @@ var $$AnimateJsProvider = ['$animateProvider', function($animateProvider) {
     function lookupAnimations(classes) {
       classes = isArray(classes) ? classes : classes.split(' ');
       var matches = [], flagMap = {};
-      for (var i=0; i < classes.length; i++) {
+      for (var i = 0; i < classes.length; i++) {
         var klass = classes[i],
             animationFactory = $animateProvider.$$registeredAnimations[klass];
         if (animationFactory && !flagMap[klass]) {

@@ -34,7 +34,7 @@ angular.module('examples', [])
           tabs.push(child.getAttribute('name'));
         });
 
-        if(tabs.length > 0) {
+        if (tabs.length > 0) {
           scope.tabs = tabs;
           scope.$on('tabChange', function(e, index, title) {
             angular.forEach(examples, function(child) {
@@ -167,7 +167,7 @@ angular.module('examples', [])
 }])
 
 .factory('getExampleData', ['$http', '$q', function($http, $q) {
-  return function(exampleFolder){
+  return function(exampleFolder) {
     // Load the manifest for the example
     return $http.get(exampleFolder + '/manifest.json')
       .then(function(response) {

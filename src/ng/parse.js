@@ -236,9 +236,8 @@ Lexer.prototype = {
 
   codePointAt: function(ch) {
     if (ch.length === 1) return ch.charCodeAt(0);
-    /*jshint bitwise: false*/
+    // eslint-disable-next-line no-bitwise
     return (ch.charCodeAt(0) << 10) + ch.charCodeAt(1) - 0x35FDC00;
-    /*jshint bitwise: true*/
   },
 
   peekMultichar: function() {
@@ -902,7 +901,7 @@ ASTCompiler.prototype = {
       this.watchFns() +
       'return fn;';
 
-    /* jshint -W054 */
+    // eslint-disable-next-line no-new-func
     var fn = (new Function('$filter',
         'ensureSafeMemberName',
         'ensureSafeObject',
@@ -922,7 +921,6 @@ ASTCompiler.prototype = {
           ifDefined,
           plusFn,
           expression);
-    /* jshint +W054 */
     this.state = this.stage = undefined;
     fn.literal = isLiteral(ast);
     fn.constant = isConstant(ast);
@@ -1645,14 +1643,14 @@ ASTInterpreter.prototype = {
   },
   'binary==': function(left, right, context) {
     return function(scope, locals, assign, inputs) {
-      /* jshint eqeqeq:false */
+      // eslint-disable-next-line eqeqeq
       var arg = left(scope, locals, assign, inputs) == right(scope, locals, assign, inputs);
       return context ? {value: arg} : arg;
     };
   },
   'binary!=': function(left, right, context) {
     return function(scope, locals, assign, inputs) {
-      /* jshint eqeqeq:false */
+      // eslint-disable-next-line eqeqeq
       var arg = left(scope, locals, assign, inputs) != right(scope, locals, assign, inputs);
       return context ? {value: arg} : arg;
     };

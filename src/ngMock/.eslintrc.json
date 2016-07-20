@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "eqeqeq": "off" // TODO enable?
+  },
+  "globals": {
+    "window": false,
+
+    "angular": false,
+    "expect": false,
+    "jQuery": false
+  }
+}

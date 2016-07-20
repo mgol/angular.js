@@ -1630,7 +1630,7 @@ describe('ngModel', function() {
       expect(isFormValid).toBe(false);
       expect($rootScope.myForm.$valid).toBe(false);
 
-      $rootScope.value='value';
+      $rootScope.value = 'value';
       $rootScope.$apply();
       expect(isFormValid).toBe(true);
       expect($rootScope.myForm.$valid).toBe(true);

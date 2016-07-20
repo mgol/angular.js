@@ -9,7 +9,7 @@ angular.module('search', [])
 
   $scope.search = function(q) {
     var MIN_SEARCH_LENGTH = 2;
-    if(q.length >= MIN_SEARCH_LENGTH) {
+    if (q.length >= MIN_SEARCH_LENGTH) {
       docsSearch(q).then(function(hits) {
         // Make sure the areas are always in the same order
         var results = {
@@ -25,16 +25,16 @@ angular.module('search', [])
 
           var limit = (area == 'api') ? 40 : 14;
           results[area] = results[area] || [];
-          if(results[area].length < limit) {
+          if (results[area].length < limit) {
             results[area].push(hit);
           }
         });
 
         var totalAreas = 0;
-        for(var i in results) {
+        for (var i in results) {
           ++totalAreas;
         }
-        if(totalAreas > 0) {
+        if (totalAreas > 0) {
           $scope.colClassName = 'cols-' + totalAreas;
         }
         $scope.hasResults = totalAreas > 0;
@@ -44,7 +44,7 @@ angular.module('search', [])
     else {
       clearResults();
     }
-    if(!$scope.$$phase) $scope.$apply();
+    if (!$scope.$$phase) $scope.$apply();
   };
 
   $scope.submit = function() {
@@ -52,14 +52,14 @@ angular.module('search', [])
     if ($scope.results.api) {
       result = $scope.results.api[0];
     } else {
-      for(var i in $scope.results) {
+      for (var i in $scope.results) {
         result = $scope.results[i][0];
-        if(result) {
+        if (result) {
           break;
         }
       }
     }
-    if(result) {
+    if (result) {
       $location.path(result.path);
       $scope.hideResults();
     }
@@ -136,7 +136,7 @@ angular.module('search', [])
   // It should only be used where the browser does support WebWorkers
   function webWorkerSearchFactory($q, $rootScope, NG_PAGES) {
 
-    console.log('Using WebWorker Search Index')
+    console.log('Using WebWorker Search Index');
 
     var searchIndex = $q.defer();
     var results;
@@ -149,7 +149,7 @@ angular.module('search', [])
     worker.onmessage = function(oEvent) {
       $rootScope.$apply(function() {
 
-        switch(oEvent.data.e) {
+        switch (oEvent.data.e) {
           case 'index-ready':
             searchIndex.resolve();
             break;
@@ -206,7 +206,7 @@ angular.module('search', [])
         FORWARD_SLASH_KEYCODE = 191;
     angular.element($document[0].body).on('keydown', function(event) {
       var input = element[0];
-      if(event.keyCode == FORWARD_SLASH_KEYCODE && document.activeElement != input) {
+      if (event.keyCode == FORWARD_SLASH_KEYCODE && document.activeElement != input) {
         event.stopPropagation();
         event.preventDefault();
         input.focus();
@@ -214,7 +214,7 @@ angular.module('search', [])
     });
 
     element.on('keydown', function(event) {
-      if(event.keyCode == ESCAPE_KEY_KEYCODE) {
+      if (event.keyCode == ESCAPE_KEY_KEYCODE) {
         event.stopPropagation();
         event.preventDefault();
         scope.$apply(function() {

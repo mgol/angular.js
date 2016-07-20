@@ -12,8 +12,7 @@ function baseThey(msg, vals, spec, itFn) {
 
   angular.forEach(vals, function(val, key) {
     var m = msg.split('$prop').join(angular.toJson(valsIsArray ? val : key));
-    itFn(m, function() {
-      /* jshint -W040 : ignore possible strict violation due to use of this */
+    itFn(m, /* @this */ function() {
       spec.call(this, val);
     });
   });

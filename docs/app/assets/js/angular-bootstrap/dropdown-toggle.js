@@ -1,19 +1,19 @@
 /* This code is taken from the AngularUI - Bootstrap Project (https://github.com/angular-ui/bootstrap)
  *
  * The MIT License
- * 
+ *
  * Copyright (c) 2012-2014 the AngularUI Team, https://github.com/organizations/angular-ui/teams/291112
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,21 +33,21 @@ angular.module('ui.bootstrap.dropdown', [])
 .service('dropdownService', ['$document', function($document) {
   var self = this, openScope = null;
 
-  this.open = function( dropdownScope ) {
-    if ( !openScope ) {
+  this.open = function(dropdownScope) {
+    if (!openScope) {
       $document.on('click', closeDropdown);
       $document.on('keydown', escapeKeyBind);
     }
 
-    if ( openScope && openScope !== dropdownScope ) {
+    if (openScope && openScope !== dropdownScope) {
         openScope.isOpen = false;
     }
 
     openScope = dropdownScope;
   };
 
-  this.close = function( dropdownScope ) {
-    if ( openScope === dropdownScope ) {
+  this.close = function(dropdownScope) {
+    if (openScope === dropdownScope) {
       openScope = null;
       $document.off('click', closeDropdown);
       $document.off('keydown', escapeKeyBind);
@@ -62,8 +62,8 @@ angular.module('ui.bootstrap.dropdown', [])
     });
   };
 
-  var escapeKeyBind = function( evt ) {
-    if ( evt.which === 27 ) {
+  var escapeKeyBind = function(evt) {
+    if (evt.which === 27) {
       closeDropdown();
     }
   };
@@ -72,12 +72,12 @@ angular.module('ui.bootstrap.dropdown', [])
 .controller('DropdownController', ['$scope', '$attrs', 'dropdownConfig', 'dropdownService', '$animate', function($scope, $attrs, dropdownConfig, dropdownService, $animate) {
   var self = this, openClass = dropdownConfig.openClass;
 
-  this.init = function( element ) {
+  this.init = function(element) {
     self.$element = element;
     $scope.isOpen = angular.isDefined($attrs.isOpen) ? $scope.$parent.$eval($attrs.isOpen) : false;
   };
 
-  this.toggle = function( open ) {
+  this.toggle = function(open) {
     return $scope.isOpen = arguments.length ? !!open : !$scope.isOpen;
   };
 
@@ -86,13 +86,13 @@ angular.module('ui.bootstrap.dropdown', [])
     return $scope.isOpen;
   };
 
-  $scope.$watch('isOpen', function( value ) {
+  $scope.$watch('isOpen', function(value) {
     $animate[value ? 'addClass' : 'removeClass'](self.$element, openClass);
 
-    if ( value ) {
-      dropdownService.open( $scope );
+    if (value) {
+      dropdownService.open($scope);
     } else {
-      dropdownService.close( $scope );
+      dropdownService.close($scope);
     }
 
     $scope.onToggle({ open: !!value });
@@ -112,7 +112,7 @@ angular.module('ui.bootstrap.dropdown', [])
       onToggle: '&'
     },
     link: function(scope, element, attrs, dropdownCtrl) {
-      dropdownCtrl.init( element );
+      dropdownCtrl.init(element);
     }
   };
 })
@@ -122,7 +122,7 @@ angular.module('ui.bootstrap.dropdown', [])
     restrict: 'CA',
     require: '?^dropdown',
     link: function(scope, element, attrs, dropdownCtrl) {
-      if ( !dropdownCtrl ) {
+      if (!dropdownCtrl) {
         return;
       }
 
@@ -130,7 +130,7 @@ angular.module('ui.bootstrap.dropdown', [])
         event.preventDefault();
         event.stopPropagation();
 
-        if ( !element.hasClass('disabled') && !element.prop('disabled') ) {
+        if (!element.hasClass('disabled') && !element.prop('disabled')) {
           scope.$apply(function() {
             dropdownCtrl.toggle();
           });
@@ -139,7 +139,7 @@ angular.module('ui.bootstrap.dropdown', [])
 
       // WAI-ARIA
       element.attr({ 'aria-haspopup': true, 'aria-expanded': false });
-      scope.$watch(dropdownCtrl.isOpen, function( isOpen ) {
+      scope.$watch(dropdownCtrl.isOpen, function(isOpen) {
         element.attr('aria-expanded', !!isOpen);
       });
     }

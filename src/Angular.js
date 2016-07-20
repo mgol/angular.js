@@ -1,99 +1,100 @@
 'use strict';
 
-/* We need to tell jshint what variables are being exported */
-/* global angular: true,
-  msie: true,
-  jqLite: true,
-  jQuery: true,
-  slice: true,
-  splice: true,
-  push: true,
-  toString: true,
-  ngMinErr: true,
-  angularModule: true,
-  uid: true,
-  REGEX_STRING_REGEXP: true,
-  VALIDITY_STATE_PROPERTY: true,
+/* We need to tell ESLint what variables are being exported */
+/* exported
+  angular,
+  msie,
+  jqLite,
+  jQuery,
+  slice,
+  splice,
+  push,
+  toString,
+  ngMinErr,
+  angularModule,
+  uid,
+  REGEX_STRING_REGEXP,
+  VALIDITY_STATE_PROPERTY,
 
-  lowercase: true,
-  uppercase: true,
-  manualLowercase: true,
-  manualUppercase: true,
-  nodeName_: true,
-  isArrayLike: true,
-  forEach: true,
-  forEachSorted: true,
-  reverseParams: true,
-  nextUid: true,
-  setHashKey: true,
-  extend: true,
-  toInt: true,
-  inherit: true,
-  merge: true,
-  noop: true,
-  identity: true,
-  valueFn: true,
-  isUndefined: true,
-  isDefined: true,
-  isObject: true,
-  isBlankObject: true,
-  isString: true,
-  isNumber: true,
-  isDate: true,
-  isArray: true,
-  isFunction: true,
-  isRegExp: true,
-  isWindow: true,
-  isScope: true,
-  isFile: true,
-  isFormData: true,
-  isBlob: true,
-  isBoolean: true,
-  isPromiseLike: true,
-  trim: true,
-  escapeForRegexp: true,
-  isElement: true,
-  makeMap: true,
-  includes: true,
-  arrayRemove: true,
-  copy: true,
-  equals: true,
-  csp: true,
-  jq: true,
-  concat: true,
-  sliceArgs: true,
-  bind: true,
-  toJsonReplacer: true,
-  toJson: true,
-  fromJson: true,
-  convertTimezoneToLocal: true,
-  timezoneToOffset: true,
-  startingTag: true,
-  tryDecodeURIComponent: true,
-  parseKeyValue: true,
-  toKeyValue: true,
-  encodeUriSegment: true,
-  encodeUriQuery: true,
-  angularInit: true,
-  bootstrap: true,
-  getTestability: true,
-  snake_case: true,
-  bindJQuery: true,
-  assertArg: true,
-  assertArgFn: true,
-  assertNotHasOwnProperty: true,
-  getter: true,
-  getBlockNodes: true,
-  hasOwnProperty: true,
-  createMap: true,
-  stringify: true,
+  lowercase,
+  uppercase,
+  manualLowercase,
+  manualUppercase,
+  nodeName_,
+  isArrayLike,
+  forEach,
+  forEachSorted,
+  reverseParams,
+  nextUid,
+  setHashKey,
+  extend,
+  toInt,
+  inherit,
+  merge,
+  noop,
+  identity,
+  valueFn,
+  isUndefined,
+  isDefined,
+  isObject,
+  isBlankObject,
+  isString,
+  isNumber,
+  isDate,
+  isArray,
+  isFunction,
+  isRegExp,
+  isWindow,
+  isScope,
+  isFile,
+  isFormData,
+  isBlob,
+  isBoolean,
+  isPromiseLike,
+  trim,
+  escapeForRegexp,
+  isElement,
+  makeMap,
+  includes,
+  arrayRemove,
+  copy,
+  equals,
+  csp,
+  jq,
+  concat,
+  sliceArgs,
+  bind,
+  toJsonReplacer,
+  toJson,
+  fromJson,
+  convertTimezoneToLocal,
+  timezoneToOffset,
+  startingTag,
+  tryDecodeURIComponent,
+  parseKeyValue,
+  toKeyValue,
+  encodeUriSegment,
+  encodeUriQuery,
+  angularInit,
+  bootstrap,
+  getTestability,
+  snake_case,
+  bindJQuery,
+  assertArg,
+  assertArgFn,
+  assertNotHasOwnProperty,
+  getter,
+  getBlockNodes,
+  hasOwnProperty,
+  createMap,
+  stringify,
 
-  NODE_TYPE_ELEMENT: true,
-  NODE_TYPE_ATTRIBUTE: true,
-  NODE_TYPE_TEXT: true,
-  NODE_TYPE_COMMENT: true,
-  NODE_TYPE_DOCUMENT: true,
-  NODE_TYPE_DOCUMENT_FRAGMENT: true,
+  NODE_TYPE_ELEMENT,
+  NODE_TYPE_ATTRIBUTE,
+  NODE_TYPE_TEXT,
+  NODE_TYPE_COMMENT,
+  NODE_TYPE_DOCUMENT,
+  NODE_TYPE_DOCUMENT_FRAGMENT,
 */
 
 ////////////////////////////////////
@@ -127,16 +128,18 @@ var uppercase = function(string) {return isString(string) ? string.toUpperCase()
 
 
 var manualLowercase = function(s) {
-  /* jshint bitwise: false */
+  /* eslint-disable no-bitwise */
   return isString(s)
       ? s.replace(/[A-Z]/g, function(ch) {return String.fromCharCode(ch.charCodeAt(0) | 32);})
       : s;
+  /* eslint-enable */
 };
 var manualUppercase = function(s) {
-  /* jshint bitwise: false */
+  /* eslint-disable no-bitwise */
   return isString(s)
       ? s.replace(/[a-z]/g, function(ch) {return String.fromCharCode(ch.charCodeAt(0) & ~32);})
       : s;
+  /* eslint-enable */
 };
 
 
@@ -1072,9 +1075,8 @@ var csp = function() {
 
   function noUnsafeEval() {
     try {
-      /* jshint -W031, -W054 */
+      // eslint-disable-next-line no-new, no-new-func
       new Function('');
-      /* jshint +W031, +W054 */
       return false;
     } catch (e) {
       return true;
@@ -1144,7 +1146,6 @@ function sliceArgs(args, startIndex) {
 }
 
 
-/* jshint -W101 */
 /**
  * @ngdoc function
  * @name angular.bind
@@ -1162,7 +1163,6 @@ function sliceArgs(args, startIndex) {
  * @param {...*} args Optional arguments to be prebound to the `fn` function call.
  * @returns {function()} Function that wraps the `fn` with all the specified bindings.
  */
-/* jshint +W101 */
 function bind(self, fn) {
   var curryArgs = arguments.length > 2 ? sliceArgs(arguments, 2) : [];
   if (isFunction(fn) && !(fn instanceof RegExp)) {

@@ -1,5 +1,6 @@
-/* jshint scripturl: true */
 'use strict';
+
+/* eslint-disable no-script-url */
 
 describe('sanitizeUri', function() {
   var sanitizeHref, sanitizeImg, sanitizeUriProvider, testUrl;

@@ -1,5 +1,7 @@
 'use strict';
 
+/* exported selectDirective, optionDirective */
+
 var noopNgModelController = { $setViewValue: noop, $render: noop };
 
 /**
@@ -183,15 +185,15 @@ var SelectController =
     } else if (interpolateValueFn) {
       // The value attribute is interpolated
       optionAttrs.$observe('value', function valueAttributeObserveAction(newVal) {
-        var currentVal = self.readValue();
+        // This method is overwritten in ngOptions and has side-effects!
+        self.readValue();
+
         var removal;
         var previouslySelected = optionElement.prop('selected');
-        var removedVal;
 
         if (isDefined(oldVal)) {
           self.removeOption(oldVal);
           removal = true;
-          removedVal = oldVal;
         }
         oldVal = newVal;
         self.addOption(newVal, optionElement);
@@ -220,7 +222,6 @@ var SelectController =
     }
 
 
-    var oldDisabled;
     optionAttrs.$observe('disabled', function(newVal) {
 
       // Since model updates will also select disabled options (like ngOptions),
@@ -233,7 +234,6 @@ var SelectController =
           self.ngModelCtrl.$setViewValue(null);
           self.ngModelCtrl.$render();
         }
-        oldDisabled = newVal;
       }
     });
 
@@ -619,7 +619,6 @@ var optionDirective = ['$interpolate', function($interpolate) {
       var interpolateValueFn, interpolateTextFn;
 
       if (isDefined(attr.ngValue)) {
-        // jshint noempty: false
         // Will be handled by registerOption
       } else if (isDefined(attr.value)) {
         // If the value attribute is defined, check if it contains an interpolation

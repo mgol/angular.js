@@ -1,7 +1,10 @@
 {
-  "extends": "../.jshintrc",
-  "browser": true,
-  "newcap": false,
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "new-cap": "off"
+  },
   "globals": {
     "mergeAnimationDetails": false,
     "prepareAnimationOptions": false,

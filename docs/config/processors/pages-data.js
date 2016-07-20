@@ -67,7 +67,7 @@ module.exports = function generatePagesDataProcessor(log) {
             })
 
             .tap(function(docTypes) {
-              if ( docTypes.input ) {
+              if (docTypes.input) {
                 docTypes.directive = docTypes.directive || [];
                 // Combine input docTypes into directive docTypes
                 docTypes.directive = docTypes.directive.concat(docTypes.input);
@@ -79,7 +79,7 @@ module.exports = function generatePagesDataProcessor(log) {
 
               sectionPages = _.sortBy(sectionPages, 'name');
 
-              if ( sectionPages.length > 0 ) {
+              if (sectionPages.length > 0) {
                 // Push a navItem for this section
                 navItems.push({
                   name: sectionName,

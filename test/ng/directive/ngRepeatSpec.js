@@ -115,8 +115,8 @@ describe('ngRepeat', function() {
   });
 
   it('should iterate over an array-like class', function() {
-    /* jshint -W009 */
     function Collection() {}
+    // eslint-disable-next-line no-array-constructor
     Collection.prototype = new Array();
     Collection.prototype.length = 0;
 

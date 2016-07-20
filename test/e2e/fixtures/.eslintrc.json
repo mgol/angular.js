@@ -1,5 +1,8 @@
 {
-  "browser": true,
+  "env": {
+    "browser": true,
+    "node": false
+  },
   "globals": {
     "angular": false,
     "jQuery": false,

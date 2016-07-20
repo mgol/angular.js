@@ -37,7 +37,7 @@ app.controller('DataController', function($rootScope, $scope) {
         }
       }
     }
-  })
+  });
 
   benchmarkSteps.push({
     name: '$apply',

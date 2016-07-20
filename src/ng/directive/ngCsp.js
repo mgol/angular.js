@@ -108,9 +108,8 @@
                   this.counter++;
                 };
                 this.evil = function() {
-                  // jshint evil:true
                   try {
-                    eval('1+2');
+                    eval('1+2'); // eslint-disable-line no-eval
                   } catch (e) {
                     this.evilError = e.message;
                   }

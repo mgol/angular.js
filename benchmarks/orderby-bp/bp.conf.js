@@ -8,7 +8,7 @@ module.exports = function(config) {
       id: 'angular',
       src: '/build/angular.js'
     },{
-      src: 'app.js',
+      src: 'app.js'
     }]
   });
 };

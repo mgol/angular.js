@@ -1891,7 +1891,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           stableNodeList = new Array(nodeListLength);
 
           // create a sparse array by only copying the elements which have a linkFn
-          for (i = 0; i < linkFns.length; i+=3) {
+          for (i = 0; i < linkFns.length; i += 3) {
             idx = linkFns[i];
             stableNodeList[idx] = nodeList[idx];
           }
@@ -2442,9 +2442,8 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             replaceDirective = directive;
           }
 
-          /* jshint -W021 */
+          // eslint-disable-next-line no-func-assign
           nodeLinkFn = compileTemplateUrl(directives.splice(i, directives.length - i), $compileNode,
-          /* jshint +W021 */
               templateAttrs, jqCollection, hasTranscludeDirective && childTranscludeFn, preLinkFns, postLinkFns, {
                 controllerDirectives: controllerDirectives,
                 newScopeDirective: (newScopeDirective !== directive) && newScopeDirective,
