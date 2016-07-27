@@ -72,7 +72,7 @@ describe("findLocaleId", function() {
 
   it("should throw an error otherwise", function() {
     expect(function() {
-      findLocaleId("str", "otherwise")
+      findLocaleId("str", "otherwise");
     }).toThrowError("unknown type in findLocaleId: otherwise");
   });
 });
@@ -117,7 +117,7 @@ describe("extractNumberSymbols", function() {
     expect(localeInfo).toEqual({
       'en_GB': { NUMBER_FORMATS: expectedNumberFormats }
     });
-  })
+  });
 });
 
 describe("extractCurrencySymbols", function() {
@@ -257,7 +257,7 @@ describe("pluralExtractor", function() {
     // Confirm some expectations for pluralCat in fr_CA.
     expect(pluralCat(0)).toEqual("one");
     expect(pluralCat(3)).toEqual("other");
-  })
+  });
 });
 
 describe("serializeContent", function() {
