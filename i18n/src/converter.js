@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * after obtaining data from closure files, use converter to massage the data into the formats
  * we want
@@ -10,9 +12,7 @@ var parsePattern = require('./parser').parsePattern;
 
 
 function convertNumberData(dataObj, currencySymbols) {
-  var numberFormats = {},
-
-  numberFormats = {
+  var numberFormats = {
     DECIMAL_SEP: dataObj.DECIMAL_SEP,
     GROUP_SEP: dataObj.GROUP_SEP,
     PATTERNS: [parsePattern(dataObj.DECIMAL_PATTERN),
@@ -22,7 +22,7 @@ function convertNumberData(dataObj, currencySymbols) {
   if (currencySymbols[dataObj.DEF_CURRENCY_CODE]) {
     numberFormats.CURRENCY_SYM = currencySymbols[dataObj.DEF_CURRENCY_CODE][1];
   } else {
-    if (dataObj.DEF_CURRENCY_CODE == 'MTL') {
+    if (dataObj.DEF_CURRENCY_CODE === 'MTL') {
       numberFormats.CURRENCY_SYM = '₤'; //for some reason this is missing in closure
     } else {
       // if there is no corresponding currency symbol, just use currency code.

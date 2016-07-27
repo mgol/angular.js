@@ -3,14 +3,8 @@
 
 var Q  = require('q'),
     qfs  = require('q-io/fs'),
-    converter = require('./converter.js'),
-    util = require('./util.js'),
     closureI18nExtractor = require('./closureI18nExtractor.js'),
-    localeInfo = {},
-    currencySymbols,
-    goog = { provide: function() {},
-             require: function() {},
-             i18n: {currency: {}, pluralRules: {}} };
+    localeInfo = {};
 
 
 var NG_LOCALE_DIR = '../src/ngLocale/';
@@ -95,7 +89,8 @@ function writeLocaleFiles() {
 function createFolder(folder) {
   return qfs.isDirectory(folder).then(function(isDir) {
     if (!isDir) return qfs.makeDirectory(folder).then(function() {
-        console.log('Created directory %j', folder); });
+      console.log('Created directory %j', folder);
+    });
   });
 }
 

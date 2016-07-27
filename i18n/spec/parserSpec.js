@@ -1,3 +1,5 @@
+'use strict';
+
 var parsePattern = require('../src/parser.js').parsePattern;
 
 describe('parsePattern', function() {
