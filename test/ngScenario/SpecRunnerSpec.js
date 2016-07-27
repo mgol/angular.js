@@ -51,7 +51,7 @@ describe('angular.scenario.SpecRunner', function() {
   }));
 
   it('should bind futures to the spec', function() {
-    runner.addFuture('test future', function(done) {
+    runner.addFuture('test future', /** @this **/ function(done) {
       this.value = 10;
       done();
     });
@@ -72,7 +72,7 @@ describe('angular.scenario.SpecRunner', function() {
 
   it('should execute spec function and notify UI', function() {
     var finished;
-    var spec = createSpec('test spec', function() {
+    var spec = createSpec('test spec', /** @this **/ function() {
       this.test = 'some value';
     });
     runner.addFuture('test future', function(done) {
@@ -94,7 +94,7 @@ describe('angular.scenario.SpecRunner', function() {
   it('should execute notify UI on spec setup error', function() {
     var finished;
     var spec = createSpec('test spec', function() {
-      throw 'message';
+      throw new Error('message');
     });
     runner.run(spec, function() {
       finished = true;
@@ -128,9 +128,9 @@ describe('angular.scenario.SpecRunner', function() {
 
   it('should execute notify UI on step error', function() {
     var finished;
-    var spec = createSpec('test spec', function() {
+    var spec = createSpec('test spec', /** @this **/ function() {
       this.addFuture('test future', function(done) {
-        throw 'error message';
+        throw new Error('error message');
       });
     });
     runner.run(spec, function() {
@@ -148,9 +148,9 @@ describe('angular.scenario.SpecRunner', function() {
 
   it('should run after handlers even if error in body of spec', function() {
     var finished, after;
-    var spec = createSpec('test spec', function() {
+    var spec = createSpec('test spec', /** @this **/ function() {
       this.addFuture('body', function(done) {
-        throw 'error message';
+        throw new Error('error message');
       });
     });
     spec.after = function() {

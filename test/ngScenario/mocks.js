@@ -27,7 +27,7 @@ angular.scenario.testing.MockRunner.prototype.on = function(eventName, fn) {
 
 angular.scenario.testing.MockRunner.prototype.emit = function(eventName) {
   var args = Array.prototype.slice.call(arguments, 1);
-  angular.forEach(this.listeners[eventName] || [], function(fn) {
+  angular.forEach(this.listeners[eventName] || [], /** @this **/ function(fn) {
     fn.apply(this, args);
   });
 };

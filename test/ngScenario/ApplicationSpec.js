@@ -48,7 +48,7 @@ describe('angular.scenario.Application', function() {
     app.getWindow_ = function() {
       return testWindow;
     };
-    app.executeAction(function($window, $document) {
+    app.executeAction(/** @this **/ function($window, $document) {
       expect(this).toEqual(app);
       expect($document).toEqual(_jQuery($window.document));
       expect($window).toEqual(testWindow);
@@ -176,7 +176,7 @@ describe('angular.scenario.Application', function() {
     expect(testWindow.angular.resumeDeferredBootstrap).toBeUndefined();
     callLoadHandlers(app);
     expect(testWindow.angular.resumeDeferredBootstrap).toBeDefined();
-    expect(app.rootElement).toBeUndefined;
+    expect(app.rootElement).toBeUndefined();
     expect(injectorSpy).not.toHaveBeenCalled();
 
     var resumeBootstrapSpy = spyOn(testWindow.angular, 'resumeBootstrap').and.returnValue($injector);
