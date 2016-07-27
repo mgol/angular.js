@@ -428,7 +428,7 @@ describe('ngMock', function() {
 
       it('should delegate exception to the $exceptionHandler service', inject(
           function($interval, $exceptionHandler) {
-        $interval(function() { throw "Test Error"; }, 1000);
+        $interval(function() { throw new Error('Test Error'); }, 1000);
         expect($exceptionHandler.errors).toEqual([]);
 
         $interval.flush(1000);
@@ -443,7 +443,7 @@ describe('ngMock', function() {
           function($interval, $rootScope) {
         var applySpy = spyOn($rootScope, '$apply').and.callThrough();
 
-        $interval(function() { throw "Test Error"; }, 1000);
+        $interval(function() { throw new Error('Test Error'); }, 1000);
         expect(applySpy).not.toHaveBeenCalled();
 
         $interval.flush(1000);
@@ -454,7 +454,7 @@ describe('ngMock', function() {
       it('should still update the interval promise when an exception is thrown',
           inject(function($interval) {
         var log = [],
-            promise = $interval(function() { throw "Some Error"; }, 1000);
+            promise = $interval(function() { throw new Error('Some Error'); }, 1000);
 
         promise.then(function(value) { log.push('promise success: ' + value); },
                    function(err) { log.push('promise error: ' + err); },
@@ -934,7 +934,7 @@ describe('ngMock', function() {
       it('should not change thrown strings', inject(function($sniffer) {
         expect(function() {
           inject(function() {
-            throw 'test message';
+            throw new Error('test message');
           });
         }).toThrow('test message');
       }));
@@ -948,7 +948,7 @@ describe('ngMock', function() {
           if (!error.stack) {
             try {
               throw error;
-            } catch (e) {}
+            } catch (e) { /** do nothing **/}
           }
 
           return !!error.stack;
@@ -1742,7 +1742,7 @@ describe('ngMock', function() {
       angular.forEach(['expectRoute', 'whenRoute'], function(routeShortcut) {
         var methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'JSONP'];
         they('should provide ' + routeShortcut + ' shortcut with $prop method', methods,
-          function() {
+          /** @this **/ function() {
             hb[routeShortcut](this, '/route').respond('path');
             hb(this, '/route', undefined, callback);
             hb.flush();
@@ -1750,7 +1750,7 @@ describe('ngMock', function() {
           }
         );
         they('should match colon deliminated parameters in ' + routeShortcut + ' $prop method', methods,
-          function() {
+          /** @this **/ function() {
             hb[routeShortcut](this, '/route/:id/path/:s_id').respond('path');
             hb(this, '/route/123/path/456', undefined, callback);
             hb.flush();
@@ -1758,7 +1758,7 @@ describe('ngMock', function() {
           }
         );
         they('should ignore query param when matching in ' + routeShortcut + ' $prop method', methods,
-          function() {
+          /** @this **/ function() {
             hb[routeShortcut](this, '/route/:id').respond('path');
             hb(this, '/route/123?q=str&foo=bar', undefined, callback);
             hb.flush();
@@ -2031,7 +2031,7 @@ describe('ngMock', function() {
         { name: 'flurp', id: 2 }
       ];
       module(function($controllerProvider) {
-        $controllerProvider.register('testCtrl', function() {
+        $controllerProvider.register('testCtrl', /** @this **/ function() {
           called = true;
           expect(this.data).toBe(data);
         });
@@ -2051,7 +2051,7 @@ describe('ngMock', function() {
           { name: 'flurp', id: 2 }
         ];
         module(function($controllerProvider) {
-          $controllerProvider.register('testCtrl', function() {
+          $controllerProvider.register('testCtrl', /** @this **/ function() {
             called = true;
             expect(this.data).toBe(data);
 
@@ -2961,7 +2961,7 @@ describe('sharedInjector', function() {
 
   // run a set of test cases in the sdescribe stub test framework
   function ngMockTest(define) {
-    return function() {
+    return /** @this **/ function() {
       var spec = this;
       module.$$currentSpec(null);
 
