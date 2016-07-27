@@ -26,11 +26,11 @@ describe('angular.scenario.Describe', function() {
   });
 
   it('should handle basic nested case', function() {
-    root.describe('A', function() {
+    root.describe('A', /** @this **/ function() {
       this.beforeEach(log.fn('{'));
       this.afterEach(log.fn('}'));
       this.it('1', log.fn('1'));
-      this.describe('B', function() {
+      this.describe('B', /** @this **/ function() {
         this.beforeEach(log.fn('('));
         this.afterEach(log.fn(')'));
         this.it('2', log.fn('2'));
@@ -54,11 +54,11 @@ describe('angular.scenario.Describe', function() {
   });
 
   it('should link nested describe blocks with parent and children', function() {
-    root.describe('A', function() {
+    root.describe('A', /** @this **/ function() {
       this.it('1', angular.noop);
-      this.describe('B', function() {
+      this.describe('B', /** @this **/ function() {
         this.it('2', angular.noop);
-        this.describe('C', function() {
+        this.describe('C', /** @this **/ function() {
           this.it('3', angular.noop);
         });
       });
@@ -69,11 +69,11 @@ describe('angular.scenario.Describe', function() {
   });
 
   it('should not process xit and xdescribe', function() {
-    root.describe('A', function() {
+    root.describe('A', /** @this **/ function() {
       this.xit('1', angular.noop);
-      this.xdescribe('B', function() {
+      this.xdescribe('B', /** @this **/ function() {
         this.it('2', angular.noop);
-        this.describe('C', function() {
+        this.describe('C', /** @this **/ function() {
           this.it('3', angular.noop);
         });
       });
@@ -82,15 +82,16 @@ describe('angular.scenario.Describe', function() {
     expect(specs.length).toEqual(0);
   });
 
+
   it('should only return iit and ddescribe if present', function() {
-    root.describe('A', function() {
+    root.describe('A', /** @this **/ function() {
       this.it('1', angular.noop);
       this.iit('2', angular.noop);
-      this.describe('B', function() {
+      this.describe('B', /** @this **/ function() {
         this.it('3', angular.noop);
-        this.ddescribe('C', function() {
+        this.ddescribe('C', /** @this **/ function() {
           this.it('4', angular.noop);
-          this.describe('D', function() {
+          this.describe('D', /** @this **/ function() {
             this.it('5', angular.noop);
           });
         });
