@@ -221,7 +221,7 @@ angular.scenario.ObjectModel.Spec.prototype.getLastStep = function() {
  * @param {angular.scenario.ObjectModel.Step} step
  */
 angular.scenario.ObjectModel.Spec.prototype.setStatusFromStep = function(step) {
-  if (!this.status || step.status == 'error') {
+  if (!this.status || step.status === 'error') {
     this.status = step.status;
     this.error = step.error;
     this.line = step.line;

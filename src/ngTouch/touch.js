@@ -1,7 +1,6 @@
 'use strict';
 
-/* global ngTouchClickDirectiveFactory: false,
- */
+/* global ngTouchClickDirectiveFactory: false */
 
 /**
  * @ngdoc module

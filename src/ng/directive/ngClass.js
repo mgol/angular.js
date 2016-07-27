@@ -3,7 +3,7 @@
 /* exported
   ngClassDirective,
   ngClassEvenDirective,
-  ngClassOddDirective,
+  ngClassOddDirective
 */
 
 function classDirective(name, selector) {

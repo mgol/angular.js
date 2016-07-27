@@ -106,7 +106,7 @@ angular.scenario.SpecRunner.prototype.addFuture = function(name, behavior, line)
  */
 angular.scenario.SpecRunner.prototype.addFutureAction = function(name, behavior, line) {
   var self = this;
-  var NG = /\[ng\\\:/;
+  var NG = /\[ng\\:/;
   return this.addFuture(name, function(done) {
     this.application.executeAction(function($window, $document) {
 

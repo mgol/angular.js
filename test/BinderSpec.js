@@ -224,7 +224,7 @@ describe('Binder', function() {
   }));
 
   it('HideBindingExpression', inject(function($rootScope, $compile) {
-    element = $compile('<div ng-hide="hidden == 3"/>')($rootScope);
+    element = $compile('<div ng-hide="hidden === 3"/>')($rootScope);
 
     $rootScope.hidden = 3;
     $rootScope.$apply();

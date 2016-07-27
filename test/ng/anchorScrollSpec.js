@@ -184,7 +184,7 @@ describe('$anchorScroll', function() {
         expectScrollingTo('id=abc')));
 
 
-      it('should scroll to top if hash == "top" and no matching element', inject(
+      it('should scroll to top if hash === "top" and no matching element', inject(
         changeHashAndScroll('top'),
         expectScrollingToTop));
 
@@ -251,7 +251,7 @@ describe('$anchorScroll', function() {
         expectScrollingTo('id=abc')));
 
 
-      it('should scroll to top if hash == "top" and no matching element', inject(
+      it('should scroll to top if hash === "top" and no matching element', inject(
         callAnchorScroll('top'),
         expectScrollingToTop));
 

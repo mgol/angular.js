@@ -51,7 +51,7 @@ function subtractOffset(expressionFn, offset) {
     return expressionFn;
   }
   function minusOffset(value) {
-    return (value == void 0) ? value : value - offset;
+    return (value == null) ? value : value - offset;
   }
   function parsedFn(context) { return minusOffset(expressionFn(context)); }
   var unwatch;

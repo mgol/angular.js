@@ -94,7 +94,7 @@
   NODE_TYPE_TEXT,
   NODE_TYPE_COMMENT,
   NODE_TYPE_DOCUMENT,
-  NODE_TYPE_DOCUMENT_FRAGMENT,
+  NODE_TYPE_DOCUMENT_FRAGMENT
 */
 
 ////////////////////////////////////
@@ -1000,7 +1000,6 @@ function copy(source, destination) {
         angular.module('equalsExample', []).controller('ExampleController', ['$scope', function($scope) {
           $scope.user1 = {};
           $scope.user2 = {};
-          $scope.result;
           $scope.compare = function() {
             $scope.result = angular.equals($scope.user1, $scope.user2);
           };
@@ -1011,6 +1010,7 @@ function copy(source, destination) {
 function equals(o1, o2) {
   if (o1 === o2) return true;
   if (o1 === null || o2 === null) return false;
+  // eslint-disable-next-line no-self-compare
   if (o1 !== o1 && o2 !== o2) return true; // NaN === NaN
   var t1 = typeof o1, t2 = typeof o2, length, key, keySet;
   if (t1 === t2 && t1 === 'object') {

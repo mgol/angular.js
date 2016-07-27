@@ -432,7 +432,7 @@ describe('ngRepeat', function() {
       element = $compile(
         '<div>' +
         '  <div ng-repeat="item in items | filter:x as results">{{item}}</div>' +
-        '  <div ng-if="results.length == 0">' +
+        '  <div ng-if="results.length === 0">' +
         '    No results found...' +
         '  </div>' +
         '</div>')(scope);
@@ -1263,7 +1263,7 @@ describe('ngRepeat', function() {
 
 
     it('should allow mixing ngRepeat with ngIf', inject(function($compile, $rootScope) {
-      element = $compile('<div><div ng-repeat="i in [1,2,3,4]" ng-if="i % 2 == 0">{{i}};</div></div>')($rootScope);
+      element = $compile('<div><div ng-repeat="i in [1,2,3,4]" ng-if="i % 2 === 0">{{i}};</div></div>')($rootScope);
       $rootScope.$digest();
       expect(element.text()).toBe('2;4;');
     }));

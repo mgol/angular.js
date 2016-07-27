@@ -1970,7 +1970,7 @@ describe("ngAnimate $animateCss", function() {
 
           var element = angular.element('<div></div>');
 
-          if (event == 'add') {
+          if (event === 'add') {
             ss.addRule('.natural-class', 'transition:1s linear all;');
           } else {
             ss.addRule('.natural-class', 'transition:0s linear none;');

@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('search', [])
 
 .controller('DocsSearchCtrl', ['$scope', '$location', 'docsSearch', function($scope, $location, docsSearch) {
@@ -23,7 +25,7 @@ angular.module('search', [])
         angular.forEach(hits, function(hit) {
           var area = hit.area;
 
-          var limit = (area == 'api') ? 40 : 14;
+          var limit = (area === 'api') ? 40 : 14;
           results[area] = results[area] || [];
           if (results[area].length < limit) {
             results[area].push(hit);
@@ -31,6 +33,7 @@ angular.module('search', [])
         });
 
         var totalAreas = 0;
+        // eslint-disable-next-line no-unused-vars
         for (var i in results) {
           ++totalAreas;
         }
@@ -206,7 +209,7 @@ angular.module('search', [])
         FORWARD_SLASH_KEYCODE = 191;
     angular.element($document[0].body).on('keydown', function(event) {
       var input = element[0];
-      if (event.keyCode == FORWARD_SLASH_KEYCODE && document.activeElement != input) {
+      if (event.keyCode === FORWARD_SLASH_KEYCODE && document.activeElement !== input) {
         event.stopPropagation();
         event.preventDefault();
         input.focus();
@@ -214,7 +217,7 @@ angular.module('search', [])
     });
 
     element.on('keydown', function(event) {
-      if (event.keyCode == ESCAPE_KEY_KEYCODE) {
+      if (event.keyCode === ESCAPE_KEY_KEYCODE) {
         event.stopPropagation();
         event.preventDefault();
         scope.$apply(function() {

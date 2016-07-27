@@ -38,7 +38,7 @@ describe('input', function() {
             };
 
             return {
-              pass: !actualValue || actualValue == 'false',
+              pass: !actualValue || actualValue === 'false',
               message: message
             };
           }

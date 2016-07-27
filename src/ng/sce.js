@@ -606,7 +606,7 @@ function $SceDelegateProvider() {
  * <file name="script.js">
  *   angular.module('mySceApp', ['ngSanitize'])
  *     .controller('AppController', ['$http', '$templateCache', '$sce',
- *       function($http, $templateCache, $sce) {
+ *       function AppController($http, $templateCache, $sce) {
  *         var self = this;
  *         $http.get("test_data.json", {cache: $templateCache}).success(function(userComments) {
  *           self.userComments = userComments;

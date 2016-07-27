@@ -17,7 +17,7 @@ var collections = {
 console.log('Google Docs...');
 
 var flag = process && process.argv[2];
-if (flag == '--login') {
+if (flag === '--login') {
   var username = process.argv[3];
   if (username) {
     askPassword(function(password) {
@@ -26,7 +26,7 @@ if (flag == '--login') {
   } else {
     console.log('Missing username!');
   }
-} else if (flag == '--fetch') {
+} else if (flag === '--fetch') {
   var collection = process.argv[3];
   if (collection) {
     fetch(collection, collections[collection]);
@@ -129,7 +129,7 @@ function login(username, password) {
       var token;
       chunk.split('\n').forEach(function(line) {
         var parts = line.split('=');
-        if (parts[0] == 'Auth') {
+        if (parts[0] === 'Auth') {
           token = parts[1];
         }
       });

@@ -1647,7 +1647,7 @@ describe('ngModel', function() {
       var animations = [];
       for (var i = 0; i < queue.length; i++) {
         var animation = queue[i];
-        if (animation.element[0] == node) {
+        if (animation.element[0] === node) {
           animations.push(animation);
         }
       }

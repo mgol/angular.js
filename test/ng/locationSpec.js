@@ -1349,7 +1349,7 @@ describe('$location', function() {
       attrs = attrs ? ' ' + attrs + ' ' : '';
 
       if (typeof linkHref === 'string' && !relLink) {
-        if (linkHref[0] == '/') {
+        if (linkHref[0] === '/') {
           linkHref = 'http://host.com' + linkHref;
         } else if (!linkHref.match(/:\/\//)) {
           // fake the behavior of <base> tag

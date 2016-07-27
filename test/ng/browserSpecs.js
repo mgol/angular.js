@@ -126,10 +126,10 @@ function MockDocument() {
   this.basePath = '/';
 
   this.find = function(name) {
-    if (name == 'base') {
+    if (name === 'base') {
       return {
         attr: function(name) {
-          if (name == 'href') {
+          if (name === 'href') {
             return self.basePath;
           } else {
             throw new Error(name);

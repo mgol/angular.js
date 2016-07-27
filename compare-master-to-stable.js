@@ -106,7 +106,7 @@ then(function(tags) {
   var major = tags[0].split('.')[0];
   return tags.
     filter(function(ver) {
-      return semver(ver).major == major;
+      return semver(ver).major === major;
     });
 }).
 then(function(tags) {

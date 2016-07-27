@@ -1,8 +1,7 @@
 {
   "env": {
     "browser": true,
-    "node": false,
-    "jasmine": true
+    "node": false
   },
 
   "globals": {

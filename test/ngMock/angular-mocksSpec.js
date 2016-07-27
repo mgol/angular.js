@@ -1833,7 +1833,7 @@ describe('ngMock', function() {
 
       it('should accept headers as function', function() {
         var exp = new MockHttpExpectation('GET', '/url', undefined, function(h) {
-          return h['Content-Type'] == 'application/json';
+          return h['Content-Type'] === 'application/json';
         });
 
         expect(exp.matchHeaders({})).toBe(false);

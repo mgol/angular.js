@@ -245,7 +245,7 @@ angular.mock.$ExceptionHandlerProvider = function() {
       case 'rethrow':
         var errors = [];
         handler = function(e) {
-          if (arguments.length == 1) {
+          if (arguments.length === 1) {
             errors.push(e);
           } else {
             errors.push([].slice.call(arguments, 0));
@@ -1205,7 +1205,7 @@ angular.mock.dump = function(object) {
          $httpBackend.expectPOST('/add-msg.py', undefined, function(headers) {
            // check if the header was sent, if it wasn't the expectation won't
            // match the request and the test will fail
-           return headers['Authorization'] == 'xxx';
+           return headers['Authorization'] === 'xxx';
          }).respond(201, '');
 
          $rootScope.saveMessage('whatever');
@@ -1907,7 +1907,8 @@ function MockHttpExpectation(method, url, data, headers, keys) {
   }
 
   function compareUrl(u) {
-    return (url.slice(0, url.indexOf('?')) == u.slice(0, u.indexOf('?')) && getUrlParams(url).join() == getUrlParams(u).join());
+    return (url.slice(0, url.indexOf('?')) === u.slice(0, u.indexOf('?')) &&
+      getUrlParams(url).join() === getUrlParams(u).join());
   }
 
   this.data = data;
@@ -1925,7 +1926,7 @@ function MockHttpExpectation(method, url, data, headers, keys) {
     if (!url) return true;
     if (angular.isFunction(url.test)) return url.test(u);
     if (angular.isFunction(url)) return url(u);
-    return (url == u || compareUrl(u));
+    return (url === u || compareUrl(u));
   };
 
   this.matchHeaders = function(h) {
@@ -1941,6 +1942,7 @@ function MockHttpExpectation(method, url, data, headers, keys) {
     if (data && !angular.isString(data)) {
       return angular.equals(angular.fromJson(angular.toJson(data)), angular.fromJson(d));
     }
+    // eslint-disable-next-line eqeqeq
     return data == d;
   };
 
@@ -2039,7 +2041,7 @@ function MockXhr() {
 
     header = undefined;
     angular.forEach(this.$$respHeaders, function(headerVal, headerName) {
-      if (!header && angular.lowercase(headerName) == name) header = headerVal;
+      if (!header && angular.lowercase(headerName) === name) header = headerVal;
     });
     return header;
   };
@@ -2413,7 +2415,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  * <file name="app.js">
  *   var myApp = angular.module('myApp', []);
  *
- *   myApp.controller('main', function($http) {
+ *   myApp.controller('MainCtrl', function MainCtrl($http) {
  *     var ctrl = this;
  *
  *     ctrl.phones = [];
@@ -2455,7 +2457,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  *   });
  * </file>
  * <file name="index.html">
- *   <div ng-controller="main as $ctrl">
+ *   <div ng-controller="MainCtrl as $ctrl">
  *   <form name="newPhoneForm" ng-submit="$ctrl.addPhone($ctrl.newPhone)">
  *     <input type="text" ng-model="$ctrl.newPhone.name">
  *     <input type="submit" value="Add Phone">
