@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('errors', ['ngSanitize'])
 
 .filter('errorLink', ['$sanitize', function($sanitize) {

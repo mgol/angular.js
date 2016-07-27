@@ -3,9 +3,5 @@
     "browser": false,
     "node": true,
     "protractor": true
-  },
-
-  "globals": {
-    "loadFixture": false
   }
 }

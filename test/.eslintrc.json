@@ -2,6 +2,7 @@
   "env": {
     "browser": true,
     "node": false,
+    "jasmine": true,
     "es6": true // typed array globals
   },
 
@@ -135,29 +136,12 @@
     "urlResolve": false,
     "urlIsSameOrigin": false,
 
-    /* jasmine / karma */
-    "it": false,
-    "fit": false,
-    "describe": false,
-    "fdescribe": false,
-    "beforeEach": false,
-    "afterEach": false,
-    "expect": false,
-    "jasmine": false,
-    "spyOn": false,
-    "waits": false,
-    "waitsFor": false,
-    "runs": false,
+    /* karma */
     "dump": false,
     "they": false,
     "fthey": false,
     "xthey": false,
     "assertCompareNodes": false,
-
-    /* e2e */
-    "browser": false,
-    "element": false,
-    "by": false,
 
     /* testabilityPatch / matchers */
     "inject": false,

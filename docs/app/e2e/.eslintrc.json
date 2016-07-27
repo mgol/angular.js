@@ -1,18 +1,11 @@
 {
   "env": {
     "node": true,
-    "jasmine": true
+    "jasmine": true,
+    "protractor": true
   },
 
   "globals": {
-
-    /* e2e */
-    "protractor": false,
-    "browser": false,
-    "element": false,
-    "by": false,
-    "$": false,
-    "$$": false,
 
     /* testabilityPatch / matchers */
     "inject": false,

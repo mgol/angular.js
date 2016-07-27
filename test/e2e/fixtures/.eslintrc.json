@@ -1,8 +1,14 @@
 {
   "env": {
     "browser": true,
-    "node": false
+    "node": false,
+    "jasmine": false
   },
+
+  "rules": {
+    "strict": "off"
+  },
+
   "globals": {
     "angular": false,
     "jQuery": false,

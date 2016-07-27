@@ -21,7 +21,7 @@ var exec = function(cmd) {
 };
 
 var andThen = function(fn, after) {
-  return function() {
+  return /* @this */ function() {
     return fn.apply(this, arguments).then(after);
   };
 };
@@ -62,7 +62,7 @@ var allInSeries = function(fn) {
         def = def.then(function(res) {
           results.push(res);
         });
-      }(args.pop()));
+      })(args.pop());
     }
     return def.then(function() {
       return results;
@@ -85,7 +85,6 @@ var checkout = oneArg(exec('git checkout %s'));
 
 var getCurrentBranch = andThen(noArgs(exec('git rev-parse --abbrev-ref HEAD')), oneLine);
 var getTags = noArgs(exec('git tag'));
-var getShaOfTag = oneArg(exec('git rev-list %s | head -n 1'));
 var getTheLog = oneArg(exec('git log --pretty=oneline %s..HEAD | cat'));
 
 // remember this so we can restore state

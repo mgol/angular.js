@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('examples', [])
 
 .directive('runnableExample', ['$templateCache', '$document', function($templateCache, $document) {

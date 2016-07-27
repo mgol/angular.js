@@ -2,10 +2,12 @@
   "env": {
     "browser": false,
     "node": true,
+    "jasmine": true,
     "protractor": true
   },
 
   "globals": {
-    "loadFixture": false
+    "binding": false,
+    "input": false
   }
 }

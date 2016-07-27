@@ -120,7 +120,8 @@ module.exports = function(grunt) {
         src: [
           '*.js',
           'src/**/*.js',
-          'test/**/*.js'
+          'test/**/*.js',
+          'i18n/**/*.js'
         ]
       }
     },

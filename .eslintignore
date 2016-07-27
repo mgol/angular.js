@@ -1,7 +1,12 @@
 bower_components/**
 build/**
 docs/bower_components/**
+docs/app/assets/**
 node_modules/**
 lib/htmlparser/**
 src/ngParseExt/ucd.js
+i18n/closure/**
 tmp/**
+
+# TODO start linting those files?
+benchmarks/**

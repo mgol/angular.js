@@ -38,7 +38,7 @@ var parseRawCommit = function(raw) {
 
   lines.forEach(function(line) {
     match = line.match(/(?:Closes|Fixes)\s#(\d+)/);
-    if (match) msg.closes.push(parseInt(match[1]));
+    if (match) msg.closes.push(parseInt(match[1], 10));
   });
 
   match = raw.match(/BREAKING CHANGE:([\s\S]*)/);
