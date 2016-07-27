@@ -1,10 +1,12 @@
+'use strict';
+
 var closureI18nExtractor = require('../src/closureI18nExtractor.js');
 var converter = require('../src/converter.js');
-findLocaleId = closureI18nExtractor.findLocaleId;
-extractNumberSymbols = closureI18nExtractor.extractNumberSymbols;
-extractCurrencySymbols = closureI18nExtractor.extractCurrencySymbols;
-extractDateTimeSymbols = closureI18nExtractor.extractDateTimeSymbols;
-outputLocale = closureI18nExtractor.outputLocale;
+var findLocaleId = closureI18nExtractor.findLocaleId;
+var extractNumberSymbols = closureI18nExtractor.extractNumberSymbols;
+var extractCurrencySymbols = closureI18nExtractor.extractCurrencySymbols;
+var extractDateTimeSymbols = closureI18nExtractor.extractDateTimeSymbols;
+var outputLocale = closureI18nExtractor.outputLocale;
 
 
 function newTestLocaleInfo() {
@@ -131,7 +133,6 @@ describe("extractCurrencySymbols", function() {
       "};"
     ].join('\n');
 
-    var localeInfo = {};
     var currencySymbols = extractCurrencySymbols(CONTENT);
     expect(currencySymbols.GBP).toEqual([2, '£', 'GB£']);
     expect(currencySymbols.AOA).toEqual([2, 'Kz', 'Kz']);
@@ -215,7 +216,6 @@ describe("extractDateTimeSymbols", function() {
 
 describe("pluralExtractor", function() {
   it("should output PLURAL_CAT in the output string code", function() {
-    var localeIds = ["fr_CA"];
     var content = (
         "goog.provide('goog.i18n.pluralRules');\n" +
         "\n" +
@@ -248,11 +248,13 @@ describe("pluralExtractor", function() {
     // Ref: closureI18nExtractor.pluralExtractor.
     pluralCat = pluralCat.replace(/^@@|@@$/g, '');
     // pluralCat requires these constants to exist.
+    // eslint-disable-next-line no-unused-vars
     var PLURAL_CATEGORY = {
       ZERO: "zero", ONE: "one", TWO: "two",
       FEW: "few", MANY: "many", OTHER: "other"
       };
     // Obtain the function by evaluating the source text.
+    // eslint-disable-next-line no-eval
     pluralCat = eval("(" + pluralCat + ")");
     // Confirm some expectations for pluralCat in fr_CA.
     expect(pluralCat(0)).toEqual("one");
@@ -263,6 +265,7 @@ describe("pluralExtractor", function() {
 describe("serializeContent", function() {
   it("should not make any modifications to the content of the locale", function() {
     var serializedContent = closureI18nExtractor.serializeContent(newTestLocaleInfo());
+    // eslint-disable-next-line no-eval
     expect(eval("(" + serializedContent + ")")).toEqual(newTestLocaleInfo());
   });
   it("should only have ascii characters", function() {
@@ -271,6 +274,7 @@ describe("serializeContent", function() {
   });
   it("should not transform arrays into objects", function() {
     var serializedContent = closureI18nExtractor.serializeContent(newTestLocaleInfo().fr_CA);
+    // eslint-disable-next-line no-eval
     var deserializedLocale = eval("(" + serializedContent + ")");
     expect(deserializedLocale.DATETIME_FORMATS.MONTH.length).not.toBeUndefined();
   });

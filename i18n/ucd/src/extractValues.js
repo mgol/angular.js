@@ -50,7 +50,7 @@ function extractValues(stream, propertiesToExtract, callback) {
 
   function doCallback() {
     for (var i in keys) {
-      property = keys[i] + '_' + keyValues[i];
+      var property = keys[i] + '_' + keyValues[i];
       invalidProperty(property);
     }
     callback(validRanges);
