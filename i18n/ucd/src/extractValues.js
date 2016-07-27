@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Extract values from a stream.
  */

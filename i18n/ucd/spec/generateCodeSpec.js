@@ -1,3 +1,5 @@
+'use strict';
+
 var generateCodeModule = require('../src/generateCode.js');
 var generateCode = generateCodeModule.generateCode;
 var generateFunction = generateCodeModule.generateFunction;
