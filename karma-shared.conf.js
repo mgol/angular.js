@@ -117,19 +117,43 @@ module.exports = function(config, specificOptions) {
         base: 'BrowserStack',
         browser: 'chrome',
         os: 'OS X',
-        os_version: 'Sierra'
+        os_version: 'Mojave',
+        version: 'current'
+      },
+      'BS_Chrome-1': {
+        base: 'BrowserStack',
+        browser: 'chrome',
+        os: 'OS X',
+        os_version: 'Mojave',
+        version: 'previous'
       },
       'BS_Safari': {
         base: 'BrowserStack',
         browser: 'safari',
         os: 'OS X',
-        os_version: 'Sierra'
+        os_version: 'Mojave',
+        version: 'current'
+      },
+      'BS_Safari-1': {
+        base: 'BrowserStack',
+        browser: 'safari',
+        os: 'OS X',
+        os_version: 'High Sierra',
+        version: 'previous'
       },
       'BS_Firefox': {
         base: 'BrowserStack',
         browser: 'firefox',
         os: 'Windows',
-        os_version: '10'
+        os_version: '10',
+        version: 'current'
+      },
+      'BS_Firefox-1': {
+        base: 'BrowserStack',
+        browser: 'firefox',
+        os: 'Windows',
+        os_version: '10',
+        version: 'previous'
       },
       'BS_IE_9': {
         base: 'BrowserStack',
