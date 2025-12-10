@@ -62,6 +62,12 @@ describe('jqLite', function() {
 
   it('should be jqLite when jqLiteMode is on, otherwise jQuery', function() {
     expect(jqLite).toBe(_jqLiteMode ? JQLite : _jQuery);
+    window.console.log('Running tests with ' +
+      (_jqLiteMode ? 'jqLite' : (
+        'jQuery ' + _jQuery.fn.jquery +
+          (_jQuery.migrateVersion ? ' with Migrate ' + _jQuery.migrateVersion : '')
+      ))
+    );
   });
 
 

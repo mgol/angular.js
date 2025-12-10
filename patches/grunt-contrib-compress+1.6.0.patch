@@ -1,0 +1,79 @@
+diff --git a/node_modules/grunt-contrib-compress/tasks/compress.js b/node_modules/grunt-contrib-compress/tasks/compress.js
+index 47c2152..596e04f 100644
+--- a/node_modules/grunt-contrib-compress/tasks/compress.js
++++ b/node_modules/grunt-contrib-compress/tasks/compress.js
+@@ -11,13 +11,6 @@
+ module.exports = function(grunt) {
+   var _ = require('lodash');
+   var compress = require('./lib/compress')(grunt);
+-  var iltorb;
+-
+-  try {
+-    iltorb = require('iltorb');
+-  } catch (er) {
+-    iltorb = null;
+-  }
+ 
+   grunt.registerMultiTask('compress', 'Compress files.', function() {
+     compress.options = this.options({
+@@ -38,11 +31,6 @@ module.exports = function(grunt) {
+ 
+     compress.options.mode = compress.options.mode || compress.autoDetectMode(compress.options.archive);
+ 
+-    if (compress.options.mode.match('brotli') && !iltorb) {
+-      grunt.fail.fatal('iltorb dependency wasn\'t found; in order to use brotli, ' +
+-                        'make sure you have a supported C++ compiler available and run `npm install` again.');
+-    }
+-
+     if (_.includes(['zip', 'tar', 'tgz', 'gzip', 'deflate', 'deflateRaw', 'brotli'], compress.options.mode) === false) {
+       grunt.fail.warn('Mode ' + String(compress.options.mode) + ' not supported.');
+     }
+diff --git a/node_modules/grunt-contrib-compress/tasks/lib/compress.js b/node_modules/grunt-contrib-compress/tasks/lib/compress.js
+index c8c9e05..5d496d2 100644
+--- a/node_modules/grunt-contrib-compress/tasks/lib/compress.js
++++ b/node_modules/grunt-contrib-compress/tasks/lib/compress.js
+@@ -17,14 +17,6 @@ var archiver = require('archiver');
+ var streamBuffers = require('stream-buffers');
+ var _ = require('lodash');
+ 
+-var iltorb;
+-
+-try {
+-  iltorb = require('iltorb');
+-} catch (er) {
+-  iltorb = null;
+-}
+-
+ module.exports = function(grunt) {
+ 
+   var exports = {
+@@ -64,12 +56,12 @@ module.exports = function(grunt) {
+ 
+   // 1 to 1 brotlify of files
+   exports.brotli = function(files, done) {
+-    exports.singleFile(files, iltorb.compressStream, 'br', done);
++    exports.singleFile(files, zlib.createBrotliCompress, 'br', done);
+     grunt.log.ok('Compressed ' + chalk.cyan(files.length) + ' ' +
+       grunt.util.pluralize(files.length, 'file/files.'));
+   };
+ 
+-  // 1 to 1 compression of files, expects a compatible zlib or iltorb/brotli method to be passed in, see above
++  // 1 to 1 compression of files, expects a compatible zlib or brotli method to be passed in, see above
+   exports.singleFile = function(files, algorithm, extension, done) {
+     grunt.util.async.forEachSeries(files, function(filePair, nextPair) {
+       grunt.util.async.forEachSeries(filePair.src, function(src, nextFile) {
+@@ -111,13 +103,7 @@ module.exports = function(grunt) {
+           initDestStream();
+         }
+ 
+-        var compressor;
+-
+-        if (iltorb && extension === 'br') {
+-          compressor = algorithm.call(iltorb, exports.options.brotli);
+-        } else {
+-          compressor = algorithm.call(zlib, exports.options);
+-        }
++        var compressor = algorithm.call(zlib, exports.options);
+ 
+         compressor.on('error', function(err) {
+           grunt.log.error(err);

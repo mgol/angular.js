@@ -138,6 +138,7 @@ module.exports = function(grunt) {
     tests: {
       jqlite: 'karma-jqlite.conf.js',
       jquery: 'karma-jquery.conf.js',
+      'jquery-3': 'karma-jquery-3.conf.js',
       'jquery-2.2': 'karma-jquery-2.2.conf.js',
       'jquery-2.1': 'karma-jquery-2.1.conf.js',
       docs: 'karma-docs.conf.js',
@@ -150,6 +151,7 @@ module.exports = function(grunt) {
     autotest: {
       jqlite: 'karma-jqlite.conf.js',
       jquery: 'karma-jquery.conf.js',
+      'jquery-3': 'karma-jquery-3.conf.js',
       'jquery-2.2': 'karma-jquery-2.2.conf.js',
       'jquery-2.1': 'karma-jquery-2.1.conf.js',
       modules: 'karma-modules.conf.js',
@@ -464,6 +466,7 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('test:jqlite', 'Run the unit tests with Karma' , ['tests:jqlite']);
   grunt.registerTask('test:jquery', 'Run the jQuery (latest) unit tests with Karma', ['tests:jquery']);
+  grunt.registerTask('test:jquery-3', 'Run the jQuery 3 unit tests with Karma', ['tests:jquery-3']);
   grunt.registerTask('test:jquery-2.2', 'Run the jQuery 2.2 unit tests with Karma', ['tests:jquery-2.2']);
   grunt.registerTask('test:jquery-2.1', 'Run the jQuery 2.1 unit tests with Karma', ['tests:jquery-2.1']);
   grunt.registerTask('test:modules', 'Run the Karma module tests with Karma', [
@@ -476,6 +479,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test:unit', 'Run unit, jQuery and Karma module tests with Karma', [
     'test:jqlite',
     'test:jquery',
+    'test:jquery-3',
     'test:jquery-2.2',
     'test:jquery-2.1',
     'test:modules'

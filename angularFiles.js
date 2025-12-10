@@ -259,7 +259,9 @@ var angularFiles = {
 
   'karmaJquery': [
     'node_modules/jquery/dist/jquery.js',
+    'node_modules/jquery-migrate/dist/jquery-migrate.js',
     'test/jquery_alias.js',
+    'test/jquery_migratemute.js',
     '@angularSrc',
     '@angularSrcModules',
     '@angularTest'
@@ -272,9 +274,14 @@ var angularFiles = {
   ]
 };
 
-['2.1', '2.2'].forEach(function(jQueryVersion) {
+['2.1', '2.2', '3'].forEach(function(jQueryVersion) {
   angularFiles['karmaJquery' + jQueryVersion] = []
     .concat(angularFiles.karmaJquery)
+    .filter(function(path) {
+      // Only jQuery 4+ needs jquery-migrate
+      return !path.startsWith('node_modules/jquery-migrate/') &&
+        !path.startsWith('test/jquery_migratemute.js');
+    })
     .map(function(path) {
       if (path.startsWith('node_modules/jquery')) {
         return path.replace(/^node_modules\/jquery/, 'node_modules/jquery-' + jQueryVersion);

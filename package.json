@@ -15,6 +15,7 @@
   },
   "scripts": {
     "commit": "git-cz",
+    "postinstall": "patch-package",
     "test-i18n": "jasmine-node i18n/spec",
     "test-i18n-ucd": "jasmine-node i18n/ucd/spec"
   },
@@ -60,9 +61,11 @@
     "jasmine-core": "^2.8.0",
     "jasmine-node": "^2.0.0",
     "jasmine-reporters": "^2.2.0",
-    "jquery": "3.5.1",
+    "jquery": "4.0.0-rc.1",
     "jquery-2.1": "npm:jquery@2.1.4",
     "jquery-2.2": "npm:jquery@2.2.4",
+    "jquery-3": "npm:jquery@3.7.1",
+    "jquery-migrate": "4.0.0-beta.2",
     "karma": "4.4.1",
     "karma-browserstack-launcher": "1.5.1",
     "karma-chrome-launcher": "3.1.0",
@@ -83,6 +86,8 @@
     "node-html-encoder": "0.0.2",
     "npm-run": "^4.1.0",
     "open-sans-fontface": "^1.4.0",
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0",
     "promises-aplus-tests": "~2.1.0",
     "protractor": "^7.0.0",
     "q": "~1.0.0",
@@ -106,7 +111,9 @@
     "//2": "(E.g. see https://github.com/gulpjs/gulp/issues/2162 and https://github.com/nodejs/node/issues/25132.)",
     "natives": "1.1.6",
     "//3": "`graceful-fs` needs to be pinned to support gulp 3, on Node v12+",
-    "graceful-fs": "^4.2.3"
+    "graceful-fs": "^4.2.3",
+    "//4": "Older `fsevents` doesn't compile on newer Macs with Apple Silicon",
+    "fsevents": "^2.3.3"
   },
   "commitplease": {
     "style": "angular",

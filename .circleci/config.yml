@@ -295,6 +295,9 @@ jobs:
           command: yarn grunt test:jquery --browsers="$BROWSERS" --reporters=spec
           no_output_timeout: 10m
       - run:
+          command: yarn grunt test:jquery-3 --browsers="$BROWSERS" --reporters=spec
+          no_output_timeout: 10m
+      - run:
           command: yarn grunt test:jquery-2.2 --browsers="$BROWSERS" --reporters=spec
           no_output_timeout: 10m
       - run:
